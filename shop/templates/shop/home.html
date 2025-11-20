@@ -1,0 +1,29 @@
+{% extends 'shop/basic.html' %}
+
+{% block title%} LocalMart {% endblock %}
+
+{% block body %}
+
+    <h1 class="mb-3">My Notes</h1>
+
+    <form method="POST">
+        {% csrf_token %}
+        <input type="text" name="title" class="form-control mb-2" placeholder="Title" required>
+        <textarea name="content" class="form-control mb-2" placeholder="Note content" required></textarea>
+        <button class="btn btn-primary" type="submit">Add Note</button>
+    </form>
+
+    <hr>
+
+    <h3>Saved Notes:</h3>
+    {% for note in notes %}
+        <div class="card mb-2">
+            <div class="card-body">
+                <h5 class="card-title">{{ note.title }}</h5>
+                <p class="card-text">{{ note.content }}</p>
+            </div>
+        </div>
+    {% empty %}
+        <p>No notes available.</p>
+    {% endfor %}
+{% endblock %}

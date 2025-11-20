@@ -1,0 +1,33 @@
+{% extends 'shop/basic.html' %}
+{% block body %}
+<div class="container">
+
+    {% for blogSet in allBlogs %}
+        {% with blogList=blogSet.0 n=blogSet.1 %}
+            {% for blog in blogList %}
+            <div class="row my-2">
+                <div class="col-md-12">
+                    <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+                        <div class="col p-4 d-flex flex-column position-static">
+                            <strong class="d-inline-block mb-2 text-primary">{{ blog.Location }}</strong>
+                            <h3 class="mb-0">{{ blog.head1 }}</h3>
+                            <div class="mb-1 text-muted">{{ blog.timestamp }}</div>
+                            <p class="card-text mb-auto">{{ blog.subhead1 }}</p>
+                            <a href="blogpost/{{ blog.blog_id }}" class="stretched-link">Continue reading</a>
+                        </div>
+                        <div class="col-auto d-none d-lg-block">
+                            <img src="{{ blog.image.url }}" width="200" height="250" class="img-thumbnail" alt="{{ blog.head1 }}">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        {% endwith %}
+    {% endfor %}
+
+</div>
+{% endblock %}
+
+
+
+

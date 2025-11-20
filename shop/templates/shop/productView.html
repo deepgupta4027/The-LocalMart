@@ -1,0 +1,59 @@
+{% extends 'shop/basic.html' %}
+
+{% block title%} Product View - {{product.product_name}}  {% endblock %}
+{% block body %}
+<div class="container my-4">
+    <div class="row mx-4">
+    <div class="col-md-4">
+        <img src="/media/{{product.image}}" alt="...">
+    </div>
+
+    <div class="col-md-4">
+        <h5> {{product.product_name}} </h5>
+        <p> {{product.desc}}  </p>
+<!--        <div style="display: flex; justify-content: space-between; align-items: center;">-->
+          <h6> Added to Platform- {{product.pub_date}} </h6>
+<!--        </div>-->
+    </div>
+        <div class="col-md-4">
+            <h6 style="margin-left: 20px;"> <b>Price- Rs.{{product.price}}</b> </h6>
+            <button class="btn btn-primary mx-3"> buy now </button>
+            <button id="pr{{i.id}}" class="btn btn-primary cart">Add to Cart</button>
+        </div>
+        </div>
+</div>
+
+{% endblock %}
+
+{% block js %}
+<script>
+    console.log('working')
+    if(localStorage.getItem('cart') == null){
+        var cart = {};
+    }
+    else{
+        cart = JSON.parse(localStorage.getItem('cart'));
+        document.getElementById('cart').innerHTML = Object.keys(cart).length;
+    }
+
+    $('.cart').click(function (){
+
+        console.log('clicked')
+        var idstr = this.id.toString();
+        console.log(idstr);
+
+        if (cart[idstr] != undefined){
+             cart[idstr] = cart[idstr] + 1;
+        }
+        else{
+            cart[idstr] = 1;
+        }
+
+        console.log(cart)
+        localStorage.setItem('cart', JSON.stringify(cart));
+        document.getElementById('cart').innerHTML = Object.keys(cart).length;
+    });
+        $('#popcart').popover('show')
+        document.getElementById("popcart").setAttribute('data-content', '<h5>cart<h5>');
+    </script>
+{% endblock %}

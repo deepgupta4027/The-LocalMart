@@ -1,0 +1,52 @@
+{% extends 'shop/basic.html' %}
+
+{% block title%}Contact | {% endblock %}
+{% block body %}
+
+
+<div class="container mx-3 my-3">
+<h3> <b> Contact us </b> </h3>
+<p> We are all ears and are available 24/7 </p>
+<form action="/shop/contact/" method="post">
+  {% csrf_token %}
+<h5> Level 1 </h5>
+<P> Customer support number - <a href="tel: 7909422222">7909400000</a> </P>
+
+<p> Email - <a href="mailto: help@myawesomecart.in">help@myawesomecart.in</a> </p>
+
+<h5> level 2 </h5>
+<h6> Enter Your Query with detail </h6>
+
+<div class="row form-group">
+  <label for="name" class="form-label">Name</label>
+  <input type="text" class="form-control" id="name" name="name" placeholder="Abcd Gupta">
+</div>
+
+<div class="row form-group">
+  <label for="name" class="form-label">Email address</label>
+  <input type="email" class="form-control" id="email" name="email" placeholder="name@example.com">
+</div>
+
+<div class="row form-group">
+  <label for="name" class="form-label">Contact Number</label>
+  <input type="tel" class="form-control" id="phone" name="phone" placeholder="012345678">
+</div>
+
+<div class="row form-group">
+  <label for="desc" class="form-label">Enter Your Query</label>
+  <textarea class="form-control" id="desc" name="desc" rows="3"></textarea>
+</div>
+
+<!--<div class="row form-group">S-->
+<!--  <label for="formFile" class="form-label">Add Screenshot(Default file)</label>-->
+<!--  <input class="form-control" type="file" id="formFile">-->
+<!--</div>-->
+
+<div class="d-grid gap-2 d-md-block">
+  <button class="btn btn-primary" type="submit">Submit</button>
+</div>
+
+<h5>Thanks for contact we will try to solve your problem as soon as possible.</h5>
+</form>
+  </div>
+{% endblock %}
