@@ -101,6 +101,7 @@ def contact(request):
 
 def productView(request,myid):
     product = Product.objects.filter(id=myid)
+    print(id)
     return render(request, 'shop/productView.html', {'product':product[0]})
 
 

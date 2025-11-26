@@ -2,12 +2,18 @@
 {% block head %}
 <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0"/>
 {% endblock %}
-{% block title%} Checkout - My Awesome Cart{% endblock %}
+{% block title%} Checkout | {% endblock %}
 {% block body %}
 <div class="container">
     <div class="col my-4">
-        <h2>Step 1 - My Awesome Cart Express Checkout - Review Your Cart Items</h2>
+        <h2>Shopping Cart</h2>
         <div class="my-4">
+            <ul class="list-group">
+            <li class="list-group-item d-flex justify-content-between align-items-center"><b>Product name</b>
+                    <span class="badge badge-primary badge-pill"><b>Qty</b></span>
+                    <span class="badge badge-primary badge-pill"><b>Amount</b></span>
+            </li>
+            </ul>
             <ul class="list-group" id="items">
             </ul>
             <nav aria-label="breadcrumb">
@@ -100,9 +106,9 @@ if ($.isEmptyObject(cart)) {
     for (item in cart) {
         let name = cart[item][1];
         let qty = cart[item][0];
-        let itemPrice = cart[item][2];
+        let itemPrice = cart[item][2] * qty;
         sum = sum + qty;
-        totalPrice = totalPrice + qty* itemPrice;
+        totalPrice = totalPrice + itemPrice;
         mystr = `<li class="list-group-item d-flex justify-content-between align-items-center">
                     ${name}
                     <span class="badge badge-primary badge-pill">${qty}</span
@@ -119,7 +125,7 @@ alert('Thanks for ordering with us. Your order id is {{id}}. Use it to track you
 localStorage.clear();
 document.location = "/shop";
 {% endif %}
-<!--$('#amount').val($('#totalPrice').html())-->
+$('#amount').val($('#totalPrice').html())
 </script>
 {% endblock %}
 
